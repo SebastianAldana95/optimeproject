@@ -1,3 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+list_product:
+  path: /
+  controller: App\Controller\ProductController::index
+
+create_product:
+  path: /product
+  controller: App\Controller\ProductController::store
+

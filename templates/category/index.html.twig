@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="card">
+
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="card-body">
+            <h5 class="card-title">Lista de categorias</h5>
+            <a class="btn btn-primary" href="{{ path('category_create') }}">Crear</a>
+
+            <table class="mt-4 table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <th scope="row">{{ category.id }}</th>
+                        <td>{{ category.name }}</td>
+                        <td>{{ category.active }}</td>
+                        <td>{{ category.createdAt|date('d-m-Y') }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('category_update', {'id': category.id }) }}">Update</a>
+                            <a class="btn btn-danger" href="{{ path('category_delete', {'id': category.id }) }}" onclick="return confirm('are u sure?')">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% else %}
+                    <td>No categories have been found.</td>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

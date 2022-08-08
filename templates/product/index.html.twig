@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List Products{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <div class="card">
+
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="card-body">
+                <h5 class="card-title">Lista de productos</h5>
+                <a class="btn btn-primary" href="{{ path('create_product') }}">Crear</a>
+
+                <table class="mt-4 table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <th scope="row">{{ product.id }}</th>
+                        <td>{{ product.category.name }}</td>
+                        <td>{{ product.code }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.brand }}</td>
+                        <td>{{ product.price|format_currency('cop', {fraction_digit: 3}) }}</td>
+                        <td>{{ product.createdAt|date('d-m-Y') }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('product_update', {'id': product.id }) }}">Update</a>
+                            <a class="btn btn-danger" href="{{ path('product_delete', {'id': product.id }) }}" onclick="return confirm('are u sure?')">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% else %}
+                        <td>No products have been found.</td>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

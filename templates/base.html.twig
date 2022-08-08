@@ -6,7 +6,8 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {# {{ encore_entry_link_tags('app') }} #}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +15,41 @@
         {% endblock %}
     </head>
     <body>
+        <div class="p-5 text-center">
+            <div class="mb-4">
+                <h1 class="mb-2 text-primary font-weight-bold">Prueba Symfony Optime Consulting</h1>
+            </div>
+            <div class="input-group mb-6">
+                <span class="input-group-text" id="inputGroup-sizing-default">Nombre Aspirante: </span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="Sebastian Aldana" readonly>
+
+                <span class="input-group-text" id="inputGroup-sizing-default">Correo Aspirante: </span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="brayan95sebas@hotmail.com" readonly>
+
+                <span class="input-group-text" id="inputGroup-sizing-default">Celular Aspirante </span>
+                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="3015669944" readonly>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="jumbotron jumbotron-fluid">
+                <h1 class="text-center">Menú</h1>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="list-group">
+                        <a href="{{ path('products_index') }}" class="list-group-item list-group-item-action">Productos</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="list-group">
+                        <a href="{{ path('category_index') }}" class="list-group-item list-group-item-action">Categorias</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% block body %}{% endblock %}
     </body>
 </html>
